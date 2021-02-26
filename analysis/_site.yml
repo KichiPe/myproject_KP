@@ -1,7 +1,7 @@
-name: "myproject_KP"
+name: myproject_KP
 output_dir: ../docs
 navbar:
-  title: "myproject_KP"
+  title: myproject_KP
   left:
   - text: Home
     href: index.html
@@ -9,6 +9,10 @@ navbar:
     href: about.html
   - text: License
     href: license.html
+  right:
+  - icon: fa-github
+    text: Source code
+    href: https://github.com/KichiPe/myproject_KP
 output:
   workflowr::wflow_html:
     toc: yes
