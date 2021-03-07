@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="‘Kyra Peters’" />
+
+<meta name="date" content="2021-02-26" />
+
+<title>Assignment</title>
+
+<script src="site_libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/master/img/reproducible.png">
+<!-- Add a small amount of space between sections. -->
+<style type="text/css">
+div.section {
+  padding-top: 12px;
+}
+</style>
+
+
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">myproject_KP</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="license.html">License</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/KichiPe/myproject_KP">
+    <span class="fas fa-github"></span>
+     
+    Source code
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Assignment</h1>
+<h4 class="author">‘Kyra Peters’</h4>
+<h4 class="date">2021-02-26</h4>
+
+</div>
+
+
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+</button>
+</p>
+<div id="workflowr-report" class="collapse">
+<ul class="nav nav-tabs">
+<li class="active">
+<a data-toggle="tab" href="#summary">Summary</a>
+</li>
+<li>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> </a>
+</li>
+<li>
+<a data-toggle="tab" href="#versions">Past versions</a>
+</li>
+</ul>
+<div class="tab-content">
+<div id="summary" class="tab-pane fade in active">
+<p>
+<strong>Last updated:</strong> 2021-03-07
+</p>
+<p>
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
+</p>
+<p>
+<strong>Knit directory:</strong> <code>myproject_KP/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
+</p>
+<p>
+This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
+  href="https://github.com/jdblischak/workflowr">workflowr</a> (version 1.6.2). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
+</p>
+<hr>
+</div>
+<div id="checks" class="tab-pane fade">
+<div id="workflowr-checks" class="panel-group">
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date </a>
+</p>
+</div>
+<div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
+</p>
+</div>
+<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! The global environment was empty. Objects defined in the global environment can affect the analysis in your R Markdown file in unknown ways. For reproduciblity it’s best to always run the code in an empty environment.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20210226code"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Seed:</strong> <code>set.seed(20210226)</code> </a>
+</p>
+</div>
+<div id="strongSeedstrongcodesetseed20210226code" class="panel-collapse collapse">
+<div class="panel-body">
+<p>The command <code>set.seed(20210226)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Session information:</strong> recorded </a>
+</p>
+</div>
+<div id="strongSessioninformationstrongrecorded" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Recording the operating system, R version, and package versions is critical for reproducibility.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Cache:</strong> none </a>
+</p>
+</div>
+<div id="strongCachestrongnone" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Nice! There were no cached chunks for this analysis, so you can be confident that you successfully produced the results during this run.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
+</p>
+</div>
+<div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Using relative paths to the files within your workflowr project makes it easier to run your code on other machines.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomKichiPemyprojectKPtree2ce76afca3a4769f4c134387f13f8c63940d4a83targetblank2ce76afa"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/KichiPe/myproject_KP/tree/2ce76afca3a4769f4c134387f13f8c63940d4a83" target="_blank">2ce76af</a> </a>
+</p>
+</div>
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomKichiPemyprojectKPtree2ce76afca3a4769f4c134387f13f8c63940d4a83targetblank2ce76afa" class="panel-collapse collapse">
+<div class="panel-body">
+<p>
+Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
+</p>
+<p>
+The results in this page were generated with repository version <a href="https://github.com/KichiPe/myproject_KP/tree/2ce76afca3a4769f4c134387f13f8c63940d4a83" target="_blank">2ce76af</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+</p>
+<p>
+Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
+</p>
+<pre><code>
+working directory clean
+</code></pre>
+<p>
+Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes.
+</p>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</div>
+<div id="versions" class="tab-pane fade">
+
+<p>
+These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/KP_analysis.Rmd</code>) and HTML (<code>docs/KP_analysis.html</code>) files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
+</p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/KichiPe/myproject_KP/blob/2ce76afca3a4769f4c134387f13f8c63940d4a83/analysis/KP_analysis.Rmd" target="_blank">2ce76af</a>
+</td>
+<td>
+KichiPe
+</td>
+<td>
+2021-03-07
+</td>
+<td>
+zweiter Versuch
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+</div>
+</div>
+</div>
+<div id="get-started" class="section level2">
+<h2>Get started:</h2>
+<p>Load necessary libraries:</p>
+<pre class="r"><code>library(openintro)
+library(tidyverse)
+library(ggplot2)
+library(broom)</code></pre>
+<p>Choose and filter needed data</p>
+<pre class="r"><code>#load hfi data and filter for year 2016
+
+hfi_2016 &lt;- hfi %&gt;% filter(year == 2016)</code></pre>
+<hr />
+</div>
+<div id="question-1" class="section level2">
+<h2>Question 1:</h2>
+<p>Copy your model from the previous exercise that uses <code>pf_expression_control</code> to predict Human Freedom or <code>hf_score</code>. Using the <code>tidy</code> command, what does the slope tell us in the context of the relationship between human freedom and expression control in the country?</p>
+<pre class="r"><code>lm_hf_vs_pf &lt;- lm(hf_score ~ pf_expression_control, data = hfi_2016)
+tidy(lm_hf_vs_pf)</code></pre>
+<pre><code># A tibble: 2 x 5
+  term                  estimate std.error statistic  p.value
+  &lt;chr&gt;                    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+1 (Intercept)              5.05     0.123       41.1 5.97e-87
+2 pf_expression_control    0.368    0.0224      16.5 2.73e-36</code></pre>
+<pre class="r"><code>glance(lm_hf_vs_pf)</code></pre>
+<pre><code># A tibble: 1 x 12
+  r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
+      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1     0.629         0.627 0.660      271. 2.73e-36     1  -161.  329.  338.
+# ... with 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
+<p>Answer:<br />
+We expect for countries with a <code>pf_expression_control</code> of 0 (x = 0) a <code>hf_score</code> of 5.05. The slope has a value of<br />
+0.368, which means that for every 1 unit increase in <code>pf_expression_control</code>, the mean <code>hf_score</code> increases 0.368 units. <span class="math inline">\(R^2\)</span> is 0.629.</p>
+</div>
+<div id="question-2" class="section level2">
+<h2>Question 2:</h2>
+<p>Add region to the model from Q1 using <code>lm(hf_score ~ pf_expression_control + region, data = hfi_2016)</code>. What do you notice about the slope between human freedom and expression control? How has it changed from the previous model. Do you think region is a confounder, and think about reasons why this might be so?</p>
+<pre class="r"><code>lm_hf_vs_pf_rg &lt;- lm(hf_score ~ pf_expression_control + region, data = hfi_2016)
+summary(lm_hf_vs_pf_rg)</code></pre>
+<pre><code>
+Call:
+lm(formula = hf_score ~ pf_expression_control + region, data = hfi_2016)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-1.9030 -0.2887  0.0179  0.2704  1.6497 
+
+Coefficients:
+                                    Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)                          6.05229    0.23549  25.701  &lt; 2e-16 ***
+pf_expression_control                0.27471    0.02585  10.627  &lt; 2e-16 ***
+regionEast Asia                      0.24054    0.32845   0.732 0.465094    
+regionEastern Europe                -0.10177    0.26736  -0.381 0.703991    
+regionLatin America &amp; the Caribbean -0.56663    0.25987  -2.180 0.030771 *  
+regionMiddle East &amp; North Africa    -1.05998    0.25870  -4.097  6.8e-05 ***
+regionNorth America                  0.33030    0.46915   0.704 0.482498    
+regionOceania                       -0.13131    0.37504  -0.350 0.726741    
+regionSouth Asia                    -0.62691    0.26403  -2.374 0.018833 *  
+regionSub-Saharan Africa            -0.97208    0.24500  -3.968 0.000112 ***
+regionWestern Europe                 0.04867    0.29823   0.163 0.870570    
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.5524 on 151 degrees of freedom
+Multiple R-squared:  0.7545,    Adjusted R-squared:  0.7382 
+F-statistic: 46.41 on 10 and 151 DF,  p-value: &lt; 2.2e-16</code></pre>
+<pre class="r"><code>tidy(lm_hf_vs_pf_rg)</code></pre>
+<pre><code># A tibble: 11 x 5
+   term                                estimate std.error statistic  p.value
+   &lt;chr&gt;                                  &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+ 1 (Intercept)                           6.05      0.235     25.7   5.19e-57
+ 2 pf_expression_control                 0.275     0.0258    10.6   4.80e-20
+ 3 regionEast Asia                       0.241     0.328      0.732 4.65e- 1
+ 4 regionEastern Europe                 -0.102     0.267     -0.381 7.04e- 1
+ 5 regionLatin America &amp; the Caribbean  -0.567     0.260     -2.18  3.08e- 2
+ 6 regionMiddle East &amp; North Africa     -1.06      0.259     -4.10  6.80e- 5
+ 7 regionNorth America                   0.330     0.469      0.704 4.82e- 1
+ 8 regionOceania                        -0.131     0.375     -0.350 7.27e- 1
+ 9 regionSouth Asia                     -0.627     0.264     -2.37  1.88e- 2
+10 regionSub-Saharan Africa             -0.972     0.245     -3.97  1.12e- 4
+11 regionWestern Europe                  0.0487    0.298      0.163 8.71e- 1</code></pre>
+<p>Calculation of the change in slope of the two models in %.</p>
+<pre class="r"><code>perc1 &lt;- ((tidy(lm_hf_vs_pf)[2,2]  -  tidy(lm_hf_vs_pf_rg)[2,2]) / tidy(lm_hf_vs_pf)[2,2] ) *100
+round(perc1, 1)</code></pre>
+<pre><code>  estimate
+1     25.4</code></pre>
+<p>Answer:<br />
+Slope decreased from 0.368 to 0.275 when region was added as a further predictor. This means, that the influence of pf-expression-control becomes smaller. The region could be a potential confounder, since there are different government systems in various regions, which have influence on <code>hf_score</code> as well as on <code>pf_expression_control</code>. A rule of thumb is that if the slope changes by more than 10% with a new predictor, it is a potential confounder. By adding region to the model, the slope changes about 25.4 % and consequently could be a confounder.</p>
+</div>
+<div id="question-3" class="section level2">
+<h2>Question 3:</h2>
+<p>Compare the <span class="math inline">\(R^2\)</span> for the 2 models from Q1 and Q2. Is there an increase by adding region?<br />
+Think about the definition of <span class="math inline">\(R^2\)</span>. What does this mean in this context?</p>
+<pre class="r"><code>glance(lm_hf_vs_pf)</code></pre>
+<pre><code># A tibble: 1 x 12
+  r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
+      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1     0.629         0.627 0.660      271. 2.73e-36     1  -161.  329.  338.
+# ... with 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
+<pre class="r"><code>glance(lm_hf_vs_pf_rg)</code></pre>
+<pre><code># A tibble: 1 x 12
+  r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
+      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1     0.754         0.738 0.552      46.4 4.52e-41    10  -128.  280.  317.
+# ... with 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
+<p>Answer:<br />
+For model 1 when comparing ‘hf_score’ and ‘pf_expression_control’ <span class="math inline">\(R^2\)</span> has a value of 0.692.<br />
+Meaning that 69,2 % of the variability of <code>hf_score</code> can be explained by <code>pf_expression_control</code>. While adding <code>region</code><br />
+as predictor, <span class="math inline">\(R^2\)</span> rises to 0.754. Consequently 75.4 % of <code>hf_score</code> variability can be explained by the model.</p>
+</div>
+<div id="question-4" class="section level2">
+<h2>Question 4:</h2>
+<p>Fit a new model that uses <code>ef_money</code> or monetary measure to predict <code>hf_score</code>. What does the slope tell us in the context of the relationship between human freedom and the economy in the country?</p>
+<pre class="r"><code>lm_hf_vs_ef &lt;- lm(hf_score ~ ef_money, data = hfi_2016)
+summary(lm_hf_vs_ef)</code></pre>
+<pre><code>
+Call:
+lm(formula = hf_score ~ ef_money, data = hfi_2016)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-3.0405 -0.5558  0.1000  0.6293  1.8601 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  2.73668    0.38713   7.069 4.56e-11 ***
+ef_money     0.50388    0.04631  10.880  &lt; 2e-16 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.821 on 160 degrees of freedom
+Multiple R-squared:  0.4252,    Adjusted R-squared:  0.4216 
+F-statistic: 118.4 on 1 and 160 DF,  p-value: &lt; 2.2e-16</code></pre>
+<pre class="r"><code>glance(lm_hf_vs_ef)</code></pre>
+<pre><code># A tibble: 1 x 12
+  r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
+      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1     0.425         0.422 0.821      118. 5.50e-21     1  -197.  400.  409.
+# ... with 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
+<p>Answer:<br />
+The slope has the value of 0.503 which is higher than in the previous models. Thus, a change in <code>ef_money</code> has a higher influence on the <code>hf_score</code>. An increase in the economy of the country thus has a stronger effect on human freedom. <span class="math inline">\(R^2\)</span> with a value of 0.425 is, however, relatively low compared to the previous models.</p>
+</div>
+<div id="question-5" class="section level2">
+<h2>Question 5:</h2>
+<p>Again add region to the model from Q4. Compare the slope and <span class="math inline">\(R^2\)</span> with the model from Q4.</p>
+<pre class="r"><code>lm_hf_vs_ef_re &lt;- lm(hf_score ~ ef_money + region, data = hfi_2016)
+summary(lm_hf_vs_ef_re)</code></pre>
+<pre><code>
+Call:
+lm(formula = hf_score ~ ef_money + region, data = hfi_2016)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1.80379 -0.36127  0.02313  0.36008  1.33084 
+
+Coefficients:
+                                    Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)                          3.55749    0.39319   9.048 6.77e-16 ***
+ef_money                             0.36406    0.03607  10.093  &lt; 2e-16 ***
+regionEast Asia                      0.87288    0.32643   2.674 0.008321 ** 
+regionEastern Europe                 0.82942    0.25997   3.190 0.001728 ** 
+regionLatin America &amp; the Caribbean  0.41520    0.25664   1.618 0.107782    
+regionMiddle East &amp; North Africa    -0.79304    0.26518  -2.991 0.003252 ** 
+regionNorth America                  1.38334    0.46186   2.995 0.003207 ** 
+regionOceania                        1.43444    0.36573   3.922 0.000133 ***
+regionSouth Asia                     0.08793    0.27079   0.325 0.745855    
+regionSub-Saharan Africa            -0.01738    0.25103  -0.069 0.944903    
+regionWestern Europe                 1.40209    0.26670   5.257 4.91e-07 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.5643 on 151 degrees of freedom
+Multiple R-squared:  0.7437,    Adjusted R-squared:  0.7268 
+F-statistic: 43.83 on 10 and 151 DF,  p-value: &lt; 2.2e-16</code></pre>
+<pre class="r"><code>tidy(lm_hf_vs_ef_re)</code></pre>
+<pre><code># A tibble: 11 x 5
+   term                                estimate std.error statistic  p.value
+   &lt;chr&gt;                                  &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+ 1 (Intercept)                           3.56      0.393     9.05   6.77e-16
+ 2 ef_money                              0.364     0.0361   10.1    1.26e-18
+ 3 regionEast Asia                       0.873     0.326     2.67   8.32e- 3
+ 4 regionEastern Europe                  0.829     0.260     3.19   1.73e- 3
+ 5 regionLatin America &amp; the Caribbean   0.415     0.257     1.62   1.08e- 1
+ 6 regionMiddle East &amp; North Africa     -0.793     0.265    -2.99   3.25e- 3
+ 7 regionNorth America                   1.38      0.462     3.00   3.21e- 3
+ 8 regionOceania                         1.43      0.366     3.92   1.33e- 4
+ 9 regionSouth Asia                      0.0879    0.271     0.325  7.46e- 1
+10 regionSub-Saharan Africa             -0.0174    0.251    -0.0692 9.45e- 1
+11 regionWestern Europe                  1.40      0.267     5.26   4.91e- 7</code></pre>
+<pre class="r"><code>glance(lm_hf_vs_ef_re)</code></pre>
+<pre><code># A tibble: 1 x 12
+  r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
+      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1     0.744         0.727 0.564      43.8 1.09e-39    10  -131.  287.  324.
+# ... with 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
+<p>Calculation of the change in slope of the two models in %.</p>
+<pre class="r"><code>perc2 &lt;-  ((tidy(lm_hf_vs_ef)[2,2]  -  tidy(lm_hf_vs_ef_re)[2,2]) / tidy(lm_hf_vs_ef)[2,2] ) *100
+round(perc2, 1)</code></pre>
+<pre><code>  estimate
+1     27.7</code></pre>
+<p>Answer:<br />
+Adding the region increases <span class="math inline">\(R^2\)</span> from 0.425 to 0.744, almost doubling it. This means that 74.4% of the variances can now be explained by the model.<br />
+The slope, on the other hand, decreases from 0.503 to 0.364. Thus, an increase of ef_money by 1 unit now has a smaller effect on the hf_score. In this model, the slope changes by 27.7 % by adding region and is thus a potential confounder.</p>
+</div>
+<div id="question-6" class="section level2">
+<h2>Question 6:</h2>
+<p>Finally fit a model with <code>ef_money</code> and <code>pf_expression_control</code> as exposures and <code>hf_score</code> as outcome.<br />
+Compare the slope and <span class="math inline">\(R^2\)</span> from the models from Q1. Could <code>ef_money</code> be a confounder?</p>
+<pre class="r"><code>lm_hf_vs_ef_pf &lt;- lm(hf_score ~ ef_money + pf_expression_control, data = hfi_2016)
+summary(lm_hf_vs_ef_pf)</code></pre>
+<pre><code>
+Call:
+lm(formula = hf_score ~ ef_money + pf_expression_control, data = hfi_2016)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1.71067 -0.28669  0.03311  0.29490  1.46097 
+
+Coefficients:
+                      Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)            2.79431    0.24351   11.47   &lt;2e-16 ***
+ef_money               0.31771    0.03146   10.10   &lt;2e-16 ***
+pf_expression_control  0.29629    0.01891   15.67   &lt;2e-16 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.5164 on 159 degrees of freedom
+Multiple R-squared:  0.7741,    Adjusted R-squared:  0.7712 
+F-statistic: 272.4 on 2 and 159 DF,  p-value: &lt; 2.2e-16</code></pre>
+<pre class="r"><code>tidy(lm_hf_vs_ef_pf)</code></pre>
+<pre><code># A tibble: 3 x 5
+  term                  estimate std.error statistic  p.value
+  &lt;chr&gt;                    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+1 (Intercept)              2.79     0.244       11.5 1.38e-22
+2 ef_money                 0.318    0.0315      10.1 7.74e-19
+3 pf_expression_control    0.296    0.0189      15.7 4.68e-34</code></pre>
+<pre class="r"><code>glance(lm_hf_vs_ef_pf)</code></pre>
+<pre><code># A tibble: 1 x 12
+  r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
+      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1     0.774         0.771 0.516      272. 4.38e-52     2  -121.  251.  263.
+# ... with 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
+<p>Calculation of the change in slope of the two models in %.</p>
+<pre class="r"><code>perc3 &lt;-  ((tidy(lm_hf_vs_pf)[2,2]  -  tidy(lm_hf_vs_ef_pf)[3,2] ) / tidy(lm_hf_vs_pf)[2,2] ) *100
+round(perc3, 1)</code></pre>
+<pre><code>  estimate
+1     19.6</code></pre>
+<p>Answer: In Q1 the slope had a value of 0.368 and <span class="math inline">\(R^2\)</span> of 0.629 In this model the slope of pf_expression control is 0.296 and for ef_money 0.317. <span class="math inline">\(R^2\)</span> increased to 0.774. Thus, the model of Q6 explains more of the variability of hf_score than the model of Q1. The slope of pf_expression control decreases from 0.368 in Q1 to 0.296 in Q6 about 19.6 % and therefore indicating that ef_money is a confounder.</p>
+</div>
+<div id="question-7" class="section level2">
+<h2>Question 7:</h2>
+<p>Use a linear regression model (and scatter plot) with <code>ef_money</code> as exposure and <code>pf_expression_control</code> as outcome,<br />
+to study whether <code>ef_money</code> has an association with <code>pf_expression_control</code> as well.<br />
+This might validate our finding that <code>ef_money</code> is a confounder between <code>pf_expression_control</code> as exposure<br />
+and <code>hf_score</code> as outcome from Q6.</p>
+<pre class="r"><code>ggplot(data = hfi_2016, aes(x = ef_money, y=pf_expression_control))+
+  geom_point(size =3.5, col= &quot;darkblue&quot;, alpha = 0.7)+
+  geom_smooth(method = &quot;lm&quot;, se = TRUE, col =&quot;grey18&quot;)+
+  ggtitle(&quot;Ef-money vs pf-expression-control&quot;)+
+  theme_light()+
+  theme(plot.title = element_text(hjust = 0.5))</code></pre>
+<pre><code>`geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="figure/KP_analysis.Rmd/unnamed-chunk-11-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>m1 &lt;- lm(pf_expression_control ~ ef_money, data = hfi_2016)
+glance(m1)</code></pre>
+<pre><code># A tibble: 1 x 12
+  r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC
+      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1     0.143         0.137  2.16      26.6 7.22e-7     1  -354.  713.  722.
+# ... with 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
+<p>Calculation of the correlation of ef_money and pf_expression_control:</p>
+<pre class="r"><code>cor_ef_pf &lt;- (cor(hfi_2016$ef_money, hfi_2016$pf_expression_control))
+round(cor_ef_pf, 3)</code></pre>
+<pre><code>[1] 0.378</code></pre>
+<p>Answer: To predict an outcome, the used exposures should be independent from each other. In the scatter plot ef_money and pf_expression_control seem to be slightly correlated when ef_money is higher than 4.5. But <span class="math inline">\(R^2\)</span> is very low with 14.3 %, meaning than only a small portion of the variance of pf_expression control can be explained by ef_money. Also the correlation between these two predictors is only 0.378, which is no strong correlation.<br />
+You should set a maximum threshold at the beginning of the analysis, which degree of correlation you accept from (independent) two predictors. In this case, I would say that ef_money is not a confounder and ef_money and pf_expression_control can be used to predict the hf_score.</p>
+</div>
+<div id="the-end" class="section level2">
+<h2>The END</h2>
+<p><img src="https://github.com/allisonhorst/stats-illustrations/blob/master/rstats-artwork/code_hero.jpg?raw=true" width="70%" style="display: block; margin: auto;" /> <strong>Super cute and absolutely true pic !! :-)</strong></p>
+<br>
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
+<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Session information
+</button>
+</p>
+<div id="workflowr-sessioninfo" class="collapse">
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 4.0.3 (2020-10-10)
+Platform: x86_64-w64-mingw32/x64 (64-bit)
+Running under: Windows 10 x64 (build 18363)
+
+Matrix products: default
+
+locale:
+[1] LC_COLLATE=German_Germany.1252  LC_CTYPE=German_Germany.1252   
+[3] LC_MONETARY=German_Germany.1252 LC_NUMERIC=C                   
+[5] LC_TIME=German_Germany.1252    
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] broom_0.7.5         forcats_0.5.1       stringr_1.4.0      
+ [4] dplyr_1.0.3         purrr_0.3.4         readr_1.4.0        
+ [7] tidyr_1.1.2         tibble_3.0.5        ggplot2_3.3.3      
+[10] tidyverse_1.3.0     openintro_2.0.0     usdata_0.1.0       
+[13] cherryblossom_0.1.0 airports_0.1.0      workflowr_1.6.2    
+
+loaded via a namespace (and not attached):
+ [1] Rcpp_1.0.6        lattice_0.20-41   lubridate_1.7.9.2 ps_1.5.0         
+ [5] utf8_1.1.4        assertthat_0.2.1  rprojroot_2.0.2   digest_0.6.27    
+ [9] R6_2.5.0          cellranger_1.1.0  backports_1.2.1   reprex_1.0.0     
+[13] evaluate_0.14     highr_0.8         httr_1.4.2        pillar_1.4.7     
+[17] rlang_0.4.10      readxl_1.3.1      rstudioapi_0.13   whisker_0.4      
+[21] Matrix_1.2-18     rmarkdown_2.6     labeling_0.4.2    splines_4.0.3    
+[25] munsell_0.5.0     compiler_4.0.3    httpuv_1.5.5      modelr_0.1.8     
+[29] xfun_0.20         pkgconfig_2.0.3   mgcv_1.8-33       htmltools_0.5.1.1
+[33] tidyselect_1.1.0  fansi_0.4.2       crayon_1.4.0      dbplyr_2.1.0     
+[37] withr_2.4.1       later_1.1.0.1     grid_4.0.3        nlme_3.1-149     
+[41] jsonlite_1.7.2    gtable_0.3.0      lifecycle_0.2.0   DBI_1.1.1        
+[45] git2r_0.28.0      magrittr_2.0.1    scales_1.1.1      cli_2.3.0        
+[49] stringi_1.5.3     farver_2.0.3      fs_1.5.0          promises_1.2.0.1 
+[53] xml2_1.3.2        ellipsis_0.3.1    generics_0.1.0    vctrs_0.3.6      
+[57] tools_4.0.3       glue_1.4.2        hms_1.0.0         yaml_2.2.1       
+[61] colorspace_2.0-0  rvest_0.3.6       knitr_1.31        haven_2.3.1      </code></pre>
+</div>
+</div>
+
+
+<!-- Adjust MathJax settings so that all math formulae are shown using
+TeX fonts only; see
+http://docs.mathjax.org/en/latest/configuration.html.  This will make
+the presentation more consistent at the cost of the webpage sometimes
+taking slightly longer to load. Note that this only works because the
+footer is added to webpages before the MathJax javascript. -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": { availableFonts: ["TeX"] }
+  });
+</script>
+
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
