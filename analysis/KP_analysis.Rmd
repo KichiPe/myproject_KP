@@ -1,0 +1,186 @@
+---
+title: "Assignment"
+author: "'Kyra Peters'"
+date: "2021-02-26"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+## Get started:
+
+Load necessary libraries:
+```{r, echo=T, message=F}
+library(openintro)
+library(tidyverse)
+library(ggplot2)
+library(broom)
+```
+
+
+
+Choose and filter needed data
+
+```{r}
+#load hfi data and filter for year 2016
+
+hfi_2016 <- hfi %>% filter(year == 2016)
+
+```
+
+---
+
+## Question 1:  
+Copy your model from the previous exercise that uses  `pf_expression_control` to predict Human Freedom or `hf_score`. Using the `tidy` command, what does the slope tell us in the context of the relationship between human freedom and expression control in the country?
+
+
+```{r}
+lm_hf_vs_pf <- lm(hf_score ~ pf_expression_control, data = hfi_2016)
+tidy(lm_hf_vs_pf)
+glance(lm_hf_vs_pf)
+
+```
+
+Answer:  
+We expect for countries with a `pf_expression_control` of 0 (x = 0) a `hf_score` of 5.05. The slope has a value of  
+0.368, which means that for every 1 unit increase in `pf_expression_control`, the mean `hf_score` increases 0.368 units.
+$R^2$ is 0.629.
+
+ 
+
+## Question 2:
+Add region to the model from Q1 using `lm(hf_score ~ pf_expression_control + region, data = hfi_2016)`. What do you notice about the slope between human freedom and expression control? How has it changed from the previous model. Do you think region is a confounder, and think about reasons why this might be so? 
+
+```{r}
+lm_hf_vs_pf_rg <- lm(hf_score ~ pf_expression_control + region, data = hfi_2016)
+summary(lm_hf_vs_pf_rg)
+tidy(lm_hf_vs_pf_rg)
+
+```
+
+Calculation of the change in slope of the two models in %.
+```{r}
+
+perc1 <- ((tidy(lm_hf_vs_pf)[2,2]  -  tidy(lm_hf_vs_pf_rg)[2,2]) / tidy(lm_hf_vs_pf)[2,2] ) *100
+round(perc1, 1)
+
+```
+
+
+Answer:  
+Slope decreased from 0.368 to 0.275 when region was added as a further predictor. This means, that the influence of pf-expression-control becomes smaller. The region could be a potential confounder, since there are different government systems in various regions, which have influence on `hf_score` as well as on `pf_expression_control`. A rule of thumb is that if the slope changes by more than 10% with a new predictor, it is a potential confounder. By adding region to the model, the slope changes about 25.4 % and consequently could be a confounder.
+
+
+
+
+## Question 3:
+Compare the $R^2$ for the 2 models from Q1 and Q2. Is there an increase by adding region?   
+Think about the definition of $R^2$. What does this mean in this context?
+
+```{r }
+glance(lm_hf_vs_pf)
+glance(lm_hf_vs_pf_rg)
+```
+
+Answer:  
+For model 1 when comparing 'hf_score' and 'pf_expression_control' $R^2$ has a value of 0.692.  
+Meaning that 69,2 % of the variability of `hf_score` can be explained by `pf_expression_control`. While adding `region`  
+as predictor, $R^2$ rises to 0.754. Consequently 75.4 % of `hf_score` variability can be explained by the model.  
+
+
+
+## Question 4:
+Fit a new model that uses `ef_money` or monetary measure to predict `hf_score`. What does the slope tell us in the context of the relationship between human freedom and the economy in the country? 
+
+```{r}
+lm_hf_vs_ef <- lm(hf_score ~ ef_money, data = hfi_2016)
+summary(lm_hf_vs_ef)
+glance(lm_hf_vs_ef)
+```
+
+Answer:   
+The slope has the value of 0.503 which is higher than in the previous models. Thus, a change in `ef_money` has a higher influence on the `hf_score`. An increase in the economy of the country thus has a stronger effect on human freedom. $R^2$ with a value of 0.425 is, however, relatively low compared to the previous models.   
+
+
+
+## Question 5:
+Again add region to the model from Q4. Compare the slope and $R^2$ with the model from Q4.
+
+```{r cars}
+lm_hf_vs_ef_re <- lm(hf_score ~ ef_money + region, data = hfi_2016)
+summary(lm_hf_vs_ef_re)
+tidy(lm_hf_vs_ef_re)
+glance(lm_hf_vs_ef_re)
+
+```
+
+Calculation of the change in slope of the two models in %.
+```{r}
+perc2 <-  ((tidy(lm_hf_vs_ef)[2,2]  -  tidy(lm_hf_vs_ef_re)[2,2]) / tidy(lm_hf_vs_ef)[2,2] ) *100
+round(perc2, 1)
+```
+
+Answer:  
+Adding the region increases $R^2$ from 0.425 to 0.744, almost doubling it. This means that 74.4% of the variances can now be explained by the model.  
+The slope, on the other hand, decreases from 0.503 to 0.364. Thus, an increase of ef_money by 1 unit now has a smaller effect on the hf_score. In this model, the slope changes by 27.7 % by adding region and is thus a potential confounder.   
+
+
+
+## Question 6:
+Finally fit a model with `ef_money` and `pf_expression_control` as exposures and `hf_score` as outcome.    
+Compare the slope and $R^2$ from the models from Q1. Could `ef_money` be a confounder? 
+
+```{r}
+lm_hf_vs_ef_pf <- lm(hf_score ~ ef_money + pf_expression_control, data = hfi_2016)
+summary(lm_hf_vs_ef_pf)
+tidy(lm_hf_vs_ef_pf)
+glance(lm_hf_vs_ef_pf)
+```
+
+Calculation of the change in slope of the two models in %.
+```{r}
+perc3 <-  ((tidy(lm_hf_vs_pf)[2,2]  -  tidy(lm_hf_vs_ef_pf)[3,2] ) / tidy(lm_hf_vs_pf)[2,2] ) *100
+round(perc3, 1)
+```
+
+Answer: In Q1 the slope had a value of 0.368 and $R^2$ of 0.629
+In this model the slope of pf_expression control is 0.296 and for ef_money 0.317. $R^2$ increased to 0.774. Thus, the model of Q6 explains more of the variability of hf_score than the model of Q1.
+The slope of pf_expression control decreases from 0.368 in Q1 to 0.296 in Q6 about 19.6 % and therefore indicating that ef_money is a confounder. 
+
+
+
+## Question 7:
+Use a linear regression model (and scatter plot) with  `ef_money` as exposure and `pf_expression_control` as outcome,  
+to study whether `ef_money` has an association with `pf_expression_control` as well.  
+This might validate our finding that `ef_money` is a confounder between  `pf_expression_control` as exposure   
+and `hf_score` as outcome from Q6.
+
+```{r}
+ggplot(data = hfi_2016, aes(x = ef_money, y=pf_expression_control))+
+  geom_point(size =3.5, col= "darkblue", alpha = 0.7)+
+  geom_smooth(method = "lm", se = TRUE, col ="grey18")+
+  ggtitle("Ef-money vs pf-expression-control")+
+  theme_light()+
+  theme(plot.title = element_text(hjust = 0.5))
+
+m1 <- lm(pf_expression_control ~ ef_money, data = hfi_2016)
+glance(m1)
+```
+
+Calculation of the correlation of ef_money and pf_expression_control:
+```{r}
+cor_ef_pf <- (cor(hfi_2016$ef_money, hfi_2016$pf_expression_control))
+round(cor_ef_pf, 3)
+```
+
+Answer: To predict an outcome, the used exposures should be independent from each other. In the scatter plot ef_money and pf_expression_control seem to be slightly correlated when ef_money is higher than 4.5. But $R^2$ is very low with 14.3 %, meaning than only a small portion of the variance of pf_expression control can be explained by ef_money. Also the correlation between these two predictors is only 0.378, which is no strong correlation.  
+You should set a maximum threshold at the beginning of the analysis, which degree of correlation you accept from (independent) two predictors. In this case, I would say that ef_money is not a confounder and ef_money and pf_expression_control can be used to predict the hf_score.
+ 
+
+
+## The END
+
+```{r, echo = FALSE, out.width = "70%", eval=TRUE}
+knitr::include_graphics("https://github.com/allisonhorst/stats-illustrations/blob/master/rstats-artwork/code_hero.jpg?raw=true", dpi = 100)
+```
+**Super cute and absolutely true pic !! :-)**
